@@ -19,6 +19,7 @@ public class ControlPlayer : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
+        // パスでカメラを参照して情報を取得している。
         camera = GameObject.Find("/Camera");
 
     }
