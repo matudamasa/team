@@ -9,7 +9,7 @@ public class ControlPlayer : MonoBehaviour
     private const float RotateSpeed = 720f;
     private Rigidbody rb;
 
-    // ’e‚Ì”­ŽË•Ï”
+    // å¼¾ã®ç™ºå°„å¤‰æ•°
     //[SerializeField]
     public GameObject bulletPrefab;
     [SerializeField]
@@ -28,24 +28,24 @@ public class ControlPlayer : MonoBehaviour
         //bulletPrefab = GameObject.Find("Bullet");
 
 
-        // ƒpƒX‚ÅƒJƒƒ‰‚ðŽQÆ‚µ‚Äî•ñ‚ðŽæ“¾‚µ‚Ä‚¢‚éB
+        // ãƒ‘ã‚¹ã§ã‚«ãƒ¡ãƒ©ã‚’å‚ç…§ã—ã¦æƒ…å ±ã‚’å–å¾—ã—ã¦ã„ã‚‹ã€‚
         camera = GameObject.Find("/Camera");
     }
 
     // Update is called once per frame
     void Update()
     {
-        // ƒL[ƒ{[ƒh“ü—Í‚ðis•ûŒü‚ÌƒxƒNƒgƒ‹‚É•ÏŠ·‚µ‚Ä•Ô‚·
+        // ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰å…¥åŠ›ã‚’é€²è¡Œæ–¹å‘ã®ãƒ™ã‚¯ãƒˆãƒ«ã«å¤‰æ›ã—ã¦è¿”ã™
         Vector3 direction = InputToDirection();
 
-        // ˆÚ“®•ûŒü‚ðŒˆ‚ß‚é
+        // ç§»å‹•æ–¹å‘ã‚’æ±ºã‚ã‚‹
         UpdatePosition(direction);
 
-        // ’e‚Ì”­ŽË
+        // å¼¾ã®ç™ºå°„
         ShotBullet();
     }
 
-    // ˆÚ“®
+    // ç§»å‹•
     private Vector3 InputToDirection()
     {
         float x = Input.GetAxisRaw("Horizontal");
@@ -55,18 +55,18 @@ public class ControlPlayer : MonoBehaviour
         return direction.normalized;
     }
 
-    // ƒJƒƒ‰‚ÌŒü‚«‚©‚çˆÚ“®•ûŒü‚ðŒˆ’è
+    // ã‚«ãƒ¡ãƒ©ã®å‘ãã‹ã‚‰ç§»å‹•æ–¹å‘ã‚’æ±ºå®š
     private void UpdatePosition(Vector3 direction)
     {
-        // ƒJƒƒ‰‚Ì•ûŒü‚©‚çAX-Z•½–Ê‚Ì’PˆÊƒxƒNƒgƒ‹‚ðŽæ“¾
+        // ã‚«ãƒ¡ãƒ©ã®æ–¹å‘ã‹ã‚‰ã€X-Zå¹³é¢ã®å˜ä½ãƒ™ã‚¯ãƒˆãƒ«ã‚’å–å¾—
         Vector3 cameraForward = Vector3.Scale(camera.transform.forward, new Vector3(1, 0, 1)).normalized;
 
-        // •ûŒüƒL[‚Ì“ü—Í’l‚ÆƒJƒƒ‰‚ÌŒü‚«‚©‚çAˆÚ“®•ûŒü‚ðŒˆ’è
+        // æ–¹å‘ã‚­ãƒ¼ã®å…¥åŠ›å€¤ã¨ã‚«ãƒ¡ãƒ©ã®å‘ãã‹ã‚‰ã€ç§»å‹•æ–¹å‘ã‚’æ±ºå®š
         Vector3 moveForward = cameraForward * direction.z + camera.transform.right * direction.x;
-        // ˆÚ“®•ûŒü‚ÉƒXƒs[ƒh‚ðŠ|‚¯‚éBƒWƒƒƒ“ƒv‚â—Ž‰º‚ª‚ ‚éê‡‚ÍA•Ê“rYŽ²•ûŒü‚Ì‘¬“xƒxƒNƒgƒ‹‚ð‘«‚·
+        // ç§»å‹•æ–¹å‘ã«ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’æŽ›ã‘ã‚‹ã€‚ã‚¸ãƒ£ãƒ³ãƒ—ã‚„è½ä¸‹ãŒã‚ã‚‹å ´åˆã¯ã€åˆ¥é€”Yè»¸æ–¹å‘ã®é€Ÿåº¦ãƒ™ã‚¯ãƒˆãƒ«ã‚’è¶³ã™
         rb.velocity = moveForward * Speed + new Vector3(0, rb.velocity.y, 0);
 
-        // ƒL[“üa—Í‚É‚æ‚èˆÚ“®•ûŒü‚ªŒˆ‚Ü‚Á‚Ä‚¢‚éê‡‚É‚ÍAƒLƒƒƒ‰ƒNƒ^[‚ÌŒü‚«‚ðis•ûŒü‚É‡‚í‚¹‚é
+        // ã‚­ãƒ¼å…¥aåŠ›ã«ã‚ˆã‚Šç§»å‹•æ–¹å‘ãŒæ±ºã¾ã£ã¦ã„ã‚‹å ´åˆã«ã¯ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®å‘ãã‚’é€²è¡Œæ–¹å‘ã«åˆã‚ã›ã‚‹
         if (moveForward != Vector3.zero)
         {
             Quaternion from = transform.rotation;
@@ -75,20 +75,19 @@ public class ControlPlayer : MonoBehaviour
         }
     }
 
-    // ’e‚Ì”­ŽËˆ—
+    // å¼¾ã®ç™ºå°„å‡¦ç†
     private void ShotBullet()
     {
         if (Input.GetKey(KeyCode.Space))
         {
             shotInterval += 0.5f;
 
-            if (shotInterval % 5 == 0 && shotCount > 0)
+            if (shotInterval % 5 == 0)
             {
                 shotCount -= 1;
 
                 GameObject bullet = Instantiate(bulletPrefab,
-                    transform.position, Quaternion.Euler(transform.parent.eulerAngles.x,
-                    transform.parent.eulerAngles.y, 0));
+                    transform.position, Quaternion.identity);
                 Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
                 bulletRb.AddForce(transform.forward * shotSpeed);
 
@@ -96,10 +95,10 @@ public class ControlPlayer : MonoBehaviour
             }
 
         }
-        else if (Input.GetKeyDown(KeyCode.R))
-        {
-            shotCount = 30;
-        }
+        //else if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    shotCount = 30;
+        //}
     }
 
 
