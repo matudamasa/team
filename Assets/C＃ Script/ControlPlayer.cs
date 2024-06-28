@@ -82,7 +82,7 @@ public class ControlPlayer : MonoBehaviour
         {
             shotInterval += 0.5f;
 
-            if (shotInterval % 5 == 0)
+            if (shotInterval % 30 == 0)
             {
                 shotCount -= 1;
 
@@ -91,7 +91,7 @@ public class ControlPlayer : MonoBehaviour
                 Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
                 bulletRb.AddForce(transform.forward * shotSpeed);
 
-                Destroy(bullet, 3.0f);
+                Destroy(bullet, 1.0f);
             }
 
         }
