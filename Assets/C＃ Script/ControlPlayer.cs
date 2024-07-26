@@ -10,13 +10,16 @@ public class ControlPlayer : MonoBehaviour
     private Rigidbody rb;
 
     // 弾の発射変数
-    //[SerializeField]
-    public GameObject bulletPrefab;
+    [SerializeField]
+    private GameObject bulletPrefab;
     [SerializeField]
     private float shotSpeed = 1500;
     [SerializeField]
     private int shotCount = 30;
     private float shotInterval;
+
+    [SerializeField]
+    private GameObject swordPrefab;
 
     private new GameObject camera;
 
@@ -42,7 +45,10 @@ public class ControlPlayer : MonoBehaviour
         UpdatePosition(direction);
 
         // 弾の発射
-        ShotBullet();
+        //ShotBullet();
+
+        // 近距離攻撃
+        Attack();
     }
 
     // 移動
@@ -87,7 +93,7 @@ public class ControlPlayer : MonoBehaviour
                 shotCount -= 1;
 
                 GameObject bullet = Instantiate(bulletPrefab,
-                    transform.position, Quaternion.identity);
+                   transform.position, Quaternion.identity);
                 Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
                 bulletRb.AddForce(transform.forward * shotSpeed);
 
@@ -99,6 +105,26 @@ public class ControlPlayer : MonoBehaviour
         //{
         //    shotCount = 30;
         //}
+    }
+
+    // 近距離攻撃
+    private void Attack()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            shotInterval += 0.5f;
+
+            if (shotInterval % 30 == 0)
+            {
+                GameObject sword = Instantiate(swordPrefab,
+                    transform.position + (transform.forward * 2), Quaternion.AngleAxis(90.0f,transform.forward));
+                //Rigidbody swordRb = sword.GetComponent<Rigidbody>();
+
+
+                Destroy(sword, 0.5f);
+            }
+
+        }
     }
 
 
