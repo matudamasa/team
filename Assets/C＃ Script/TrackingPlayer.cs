@@ -28,7 +28,7 @@ public class TrackingPlayer : MonoBehaviour
         distance = Vector3.Distance(transform.position, goal.transform.position);
         Debug.Log(distance);
 
-        if (distance < 20)
+        if (distance < 10)
         {
             moveNow = 1;    
             agent.destination = goal.transform.position; //‡@
