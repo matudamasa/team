@@ -62,14 +62,44 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e1828f863b4a91b48b42c2a359f339d5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3309357551104766}
+      addedObject: {fileID: -8132878526894212833}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e1828f863b4a91b48b42c2a359f339d5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3860988265099776388}
   m_SourcePrefab: {fileID: 100100000, guid: e1828f863b4a91b48b42c2a359f339d5, type: 3}
 --- !u!1 &2832695994009891633 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e1828f863b4a91b48b42c2a359f339d5, type: 3}
   m_PrefabInstance: {fileID: 3138630907652247136}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3309357551104766
+--- !u!54 &-8132878526894212833
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2832695994009891633}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!114 &-3860988265099776388
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -78,11 +108,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2832695994009891633}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 278e22144629d3d4b8173a7df18133ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 915cbf83f2e13ab469b07c74d478c766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shellPrefab: {fileID: 0}
-  fireDelay: 180
-  fireDestroy: 3.5
-  moveSpeed: 3
-  player: {fileID: 0}
+  speed: 0.1
