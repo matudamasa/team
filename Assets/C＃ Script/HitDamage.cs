@@ -18,6 +18,5 @@ public class HitDamage : MonoBehaviour
     {
         Destroy(gameObject);
 
-        SceneManager.LoadScene("MapScene");
     }
 }
