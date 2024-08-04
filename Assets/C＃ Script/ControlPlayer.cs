@@ -66,7 +66,7 @@ public class ControlPlayer : MonoBehaviour
         // 移動方向にスピードを掛ける。ジャンプや落下がある場合は、別途Y軸方向の速度ベクトルを足す
         rb.velocity = moveForward * Speed + new Vector3(0, rb.velocity.y, 0);
 
-        // キー入a力により移動方向が決まっている場合には、キャラクターの向きを進行方向に合わせる
+        // キー入力により移動方向が決まっている場合には、キャラクターの向きを進行方向に合わせる
         if (moveForward != Vector3.zero)
         {
             Quaternion from = transform.rotation;
@@ -78,9 +78,10 @@ public class ControlPlayer : MonoBehaviour
     // 弾の発射処理
     private void ShotBullet()
     {
+        Quaternion rot = Quaternion.Euler(90, 0, 0);
         if (Input.GetKey(KeyCode.Space))
         {
-            shotInterval += 0.5f;
+            shotInterval += 1f;
 
             if (shotInterval % 30 == 0)
             {
@@ -90,8 +91,9 @@ public class ControlPlayer : MonoBehaviour
                     transform.position, Quaternion.identity);
                 Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
                 bulletRb.AddForce(transform.forward * shotSpeed);
+               
 
-                Destroy(bullet, 1.0f);
+                Destroy(bullet, 0.5f);
             }
 
         }

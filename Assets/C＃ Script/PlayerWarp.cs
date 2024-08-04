@@ -18,12 +18,12 @@ public class CubeWarp : MonoBehaviour
 
         if (other.gameObject.name == "GoalPrefab2")
         {
-            this.transform.position = new Vector3(314f, 0.8f, 195f);
+            this.transform.position = new Vector3(314f, 2.1f, 195f);
         }
 
         if (other.gameObject.name == "GoalPrefab3")
         {
-            this.transform.position = new Vector3(259.5f, 0.45f, 280f);
+            this.transform.position = new Vector3(259.5f, 2.1f, 280f);
         }
         if (other.gameObject.name == "GoalPrefab4")
         {
