@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,11 @@ public class CharacterHp : MonoBehaviour
     public int Life()
     {
         return hp;
+    }
+
+    internal float LifeMax()
+    {
+        throw new NotImplementedException();
     }
 
     void Start()

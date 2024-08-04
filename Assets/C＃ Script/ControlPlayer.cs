@@ -1,25 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ControlPlayer : MonoBehaviour
 {
 
-    private float Speed = 5f;
+    [SerializeField]
+    private Animator playerAnimator;
+    private float Speed = 7f;
     private const float RotateSpeed = 720f;
     private Rigidbody rb;
 
     // 弾の発射変数
-    [SerializeField]
-    private GameObject bulletPrefab;
+    //[SerializeField]
+    public GameObject bulletPrefab;
     [SerializeField]
     private float shotSpeed = 1500;
     [SerializeField]
-    private int shotCount = 30;
+    private int shotCount = 0;
     private float shotInterval;
-
-    [SerializeField]
-    private GameObject swordPrefab;
 
     private new GameObject camera;
 
@@ -45,10 +45,7 @@ public class ControlPlayer : MonoBehaviour
         UpdatePosition(direction);
 
         // 弾の発射
-        //ShotBullet();
-
-        // 近距離攻撃
-        Attack();
+        ShotBullet();
     }
 
     // 移動
@@ -72,7 +69,7 @@ public class ControlPlayer : MonoBehaviour
         // 移動方向にスピードを掛ける。ジャンプや落下がある場合は、別途Y軸方向の速度ベクトルを足す
         rb.velocity = moveForward * Speed + new Vector3(0, rb.velocity.y, 0);
 
-        // キー入a力により移動方向が決まっている場合には、キャラクターの向きを進行方向に合わせる
+        // キー入力により移動方向が決まっている場合には、キャラクターの向きを進行方向に合わせる
         if (moveForward != Vector3.zero)
         {
             Quaternion from = transform.rotation;
@@ -81,23 +78,32 @@ public class ControlPlayer : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        // 接触したオブジェクトのタグがRetryBoardかを比較
+        if (other.gameObject.CompareTag("RetryBoard"))
+        {
+            // Sceneを再読み込み
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
     // 弾の発射処理
     private void ShotBullet()
     {
-        if (Input.GetKey(KeyCode.Space))
+        Quaternion rot = Quaternion.Euler(90, 0, 0);
+        shotInterval -= 0.5f;
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            shotInterval += 0.5f;
-
-            if (shotInterval % 30 == 0)
+            if (shotInterval <= 0)
             {
-                shotCount -= 1;
-
+                shotInterval = 100;
                 GameObject bullet = Instantiate(bulletPrefab,
-                   transform.position, Quaternion.identity);
+                    transform.position, Quaternion.identity);
                 Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
                 bulletRb.AddForce(transform.forward * shotSpeed);
 
-                Destroy(bullet, 1.0f);
+                Destroy(bullet, 0.25f);
+                playerAnimator.SetBool("Attack", true);
             }
 
         }
@@ -107,25 +113,36 @@ public class ControlPlayer : MonoBehaviour
         //}
     }
 
-    // 近距離攻撃
-    private void Attack()
+
+    private void AttackOff()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            shotInterval += 0.5f;
-
-            if (shotInterval % 30 == 0)
-            {
-                GameObject sword = Instantiate(swordPrefab,
-                    transform.position + (transform.forward * 2), Quaternion.AngleAxis(90.0f,transform.forward));
-                //Rigidbody swordRb = sword.GetComponent<Rigidbody>();
-
-
-                Destroy(sword, 0.5f);
-            }
-
-        }
+        playerAnimator.SetBool("Attack", false);
     }
+    // 弾の発射処理
+    //private void ShotBullet()
+    //{
+    //Quaternion rot = Quaternion.Euler(90, 0, 0);
+    //if (Input.GetKey(KeyCode.Space))
+    //{
+    //    shotInterval += 1f;
 
+    //    if (shotInterval % 200 == 0)
+    //    {
+    //        shotCount -= 1;
 
+    //        GameObject bullet = Instantiate(bulletPrefab,
+    //            transform.position, Quaternion.identity);
+    //        Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
+    //        bulletRb.AddForce(transform.forward * shotSpeed);
+
+    //        Destroy(bullet, 0.25f);
+    //    }
+
+    //}
+    //else if (Input.GetKeyDown(KeyCode.R))
+    //{
+    //    shotCount = 30;
+    //}
 }
+
+

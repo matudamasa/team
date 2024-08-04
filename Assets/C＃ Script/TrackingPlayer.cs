@@ -17,7 +17,7 @@ public class TrackingPlayer : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();@//‡@
         goal = GameObject.Find("Cara");
-        Debug.Log(moveNow); // “®‚¢‚Ä‚¢‚é‚©
+   
     }
 
     // Update is called once per frame
@@ -26,9 +26,9 @@ public class TrackingPlayer : MonoBehaviour
 
         //‡A“ñÒŠÔ‚Ì‹——£‚ğŒvZ‚µ‚Äfloat@ˆê’è’l‚¢‚©‚É‚È‚ê‚Î’ÇÕ‚·‚é
         distance = Vector3.Distance(transform.position, goal.transform.position);
-        Debug.Log(distance);
+   
 
-        if (distance < 20)
+        if (distance < 10)
         {
             moveNow = 1;    
             agent.destination = goal.transform.position; //‡@
