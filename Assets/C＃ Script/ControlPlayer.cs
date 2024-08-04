@@ -15,7 +15,7 @@ public class ControlPlayer : MonoBehaviour
     [SerializeField]
     private float shotSpeed = 1500;
     [SerializeField]
-    private int shotCount = 30;
+    private int shotCount = 0;
     private float shotInterval;
 
     private new GameObject camera;
@@ -83,7 +83,7 @@ public class ControlPlayer : MonoBehaviour
         {
             shotInterval += 1f;
 
-            if (shotInterval % 30 == 0)
+            if (shotInterval % 200 == 0)
             {
                 shotCount -= 1;
 
@@ -92,8 +92,7 @@ public class ControlPlayer : MonoBehaviour
                 Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
                 bulletRb.AddForce(transform.forward * shotSpeed);
                
-
-                Destroy(bullet, 0.5f);
+                Destroy(bullet, 0.25f);
             }
 
         }

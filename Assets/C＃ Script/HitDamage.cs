@@ -12,7 +12,18 @@ public class HitDamage : MonoBehaviour
         {
             OnDie();
         }
+
+
+
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("bullet"))
+        {
+            OnDie();
+        }
+    }
+
 
     void OnDie()
     {
