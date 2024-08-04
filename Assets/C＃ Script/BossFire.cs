@@ -6,10 +6,10 @@ public class BossFire : MonoBehaviour
 {
     public GameObject shellPrefab;
     private int count;
-    public float fireDelay = 1500;
+    public float fireDelay = 600;
     public float fireDestroy =1.0f;
 
-    public float moveSpeed = 0.05f; // ’e‚ÌˆÚ“®‘¬“x
+    public float moveSpeed = 0.5f; // ’e‚ÌˆÚ“®‘¬“x
     public Transform player;
 
     void Update()
@@ -18,7 +18,7 @@ public class BossFire : MonoBehaviour
 
         // iƒ|ƒCƒ“ƒgj
         // ‚U‚OƒtƒŒ[ƒ€‚²‚Æ‚É–C’e‚ğ”­Ë‚·‚é
-        if (count % 1500 == 0)
+        if (count % fireDelay == 0)
         {
             GameObject shell = Instantiate(shellPrefab, transform.position, Quaternion.identity);
             Rigidbody shellRb = shell.GetComponent<Rigidbody>();

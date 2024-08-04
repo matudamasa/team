@@ -10,7 +10,6 @@ public class SphereMove : MonoBehaviour
 
     void Start()
     {
-        speed = 0.05f;
         target = GameObject.Find("Cara");
     }
 
