@@ -13,8 +13,6 @@ public class HitDamage : MonoBehaviour
             OnDie();
         }
 
-
-
     }
     private void OnTriggerEnter(Collider other)
     {

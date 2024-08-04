@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ControlPlayer : MonoBehaviour
 {
-
-    private float Speed = 5f;
+    private float Speed = 7f;
     private const float RotateSpeed = 720f;
     private Rigidbody rb;
 
@@ -75,8 +75,18 @@ public class ControlPlayer : MonoBehaviour
         }
     }
 
-    // 弾の発射処理
-    private void ShotBullet()
+    void OnTriggerEnter(Collider other)
+    {
+        // 接触したオブジェクトのタグがRetryBoardかを比較
+        if (other.gameObject.CompareTag("RetryBoard"))
+        {
+            // Sceneを再読み込み
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
+        // 弾の発射処理
+        private void ShotBullet()
     {
         Quaternion rot = Quaternion.Euler(90, 0, 0);
         if (Input.GetKey(KeyCode.Space))

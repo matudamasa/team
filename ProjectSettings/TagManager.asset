@@ -6,6 +6,8 @@ TagManager:
   tags:
   - bullet
   - Goal
+  - RetryBoard
+  - Enemy
   layers:
   - Default
   - TransparentFX
